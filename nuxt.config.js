@@ -1,6 +1,8 @@
+const env = require('./.env');
+
 module.exports = {
     mode: 'universal',
-    srcDir: './src/frontend',
+    srcDir: './frontend',
     /*
   ** Headers of the page
   */
@@ -13,7 +15,7 @@ module.exports = {
         ],
         link: [
             { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-            { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Roboto&display=swap' }
+            { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Roboto+Slab&display=swap' }
         ]
     },
     /*
@@ -46,6 +48,10 @@ module.exports = {
   ** See https://axios.nuxtjs.org/options
   */
     axios: {
+        baseURL: env.BASE_URL,
+        redirectError: {
+            401: '/index'
+        }
     },
     /*
   ** Build configuration
