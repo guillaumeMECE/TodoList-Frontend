@@ -4,7 +4,7 @@
     toggleable="md"
   >
     <b-navbar-brand href="/">
-      Nuxtorous
+      TODO
     </b-navbar-brand>
     <b-navbar-toggle target="nav-collapse" />
 
