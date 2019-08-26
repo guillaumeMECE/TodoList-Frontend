@@ -1,18 +1,26 @@
 <template>
   <b-row>
     <b-col>
-      <h1>Welcome to Nuxtorous!</h1>
-      <createTodo />
+      <create-todo class="m-5" />
+      <list-todo class="m-5" />
     </b-col>
   </b-row>
 </template>
 
 <script>
 import CreateTodo from '~/components/CreateTodo';
+import ListTodo from '~/components/ListTodo';
 
 export default {
     components: {
-        CreateTodo
+        CreateTodo,
+        ListTodo
     }
 };
 </script>
+
+<style scoped>
+body{
+font-family: 'Roboto Slab', serif;
+}
+</style>
