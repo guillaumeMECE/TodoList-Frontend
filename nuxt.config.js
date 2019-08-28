@@ -36,6 +36,10 @@ module.exports = {
   ** Nuxt.js modules
   */
     modules: [
+      
+        // Doc: https://vuetifyjs.com/
+        '@nuxtjs/vuetify',
+      
         // Doc: https://bootstrap-vue.js.org/docs/
         'bootstrap-vue/nuxt',
         // '@nuxtjs/bootstrap-vue',
@@ -43,6 +47,7 @@ module.exports = {
         '@nuxtjs/axios',
         '@nuxtjs/eslint-module'
     ],
+    
     /*
   ** Axios module configuration
   ** See https://axios.nuxtjs.org/options
