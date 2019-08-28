@@ -1,53 +1,78 @@
 <template>
-  <b-navbar
-    class="mb-3"
-    toggleable="md"
-  >
-    <b-navbar-brand href="/">
-      TODO
-    </b-navbar-brand>
-    <b-navbar-toggle target="nav-collapse" />
-
-    <b-collapse
-      id="nav-collapse"
-      is-nav
+  <div>
+    <v-app-bar
+      color="deep-purple accent-4"
+      dense
+      dark
+      height="64"
     >
-      <b-navbar-nav>
-        <b-nav-item href="/login">
-          Login
-        </b-nav-item>
-      </b-navbar-nav>
+      <v-app-bar-nav-icon />
 
-      <!-- Right aligned nav items -->
-      <b-navbar-nav class="ml-auto">
-        <b-nav-form>
-          <b-form-input
-            size="sm"
-            class="mr-sm-2"
-            placeholder="Search"
-          />
-          <b-button
-            size="sm"
-            class="my-2 my-sm-0"
-            type="submit"
+      <v-toolbar-title>Todo List</v-toolbar-title>
+
+      <div class="flex-grow-1" />
+      <v-text-field
+        v-show="isSearching"
+        prepend-inner-icon="mdi-magnify"
+        label="Search..."
+        solo
+        flat
+        dark
+        style="transform:translateY(15px);width:10px"
+        @blur="isSearching=!isSearching"
+      />
+      <v-btn
+        v-show="!isSearching"
+        icon
+        @click="isSearching=!isSearching"
+      >
+        <v-icon>mdi-magnify</v-icon>
+      </v-btn>
+      <v-btn
+        icon
+        href="https://github.com/guillaumeMECE"
+        target="_blank"
+      >
+        <v-icon>mdi-heart</v-icon>
+      </v-btn>
+     
+
+      <v-menu
+        left
+        bottom
+      >
+        <template v-slot:activator="{ on }">
+          <v-btn
+            icon
+            v-on="on"
           >
-            Search
-          </b-button>
-        </b-nav-form>
-      </b-navbar-nav>
-    </b-collapse>
-  </b-navbar>
+            <v-icon>mdi-dots-vertical</v-icon>
+          </v-btn>
+        </template>
+
+        <v-list>
+          <v-list-item
+            v-for="n in 5"
+            :key="n"
+            @click="() => {}"
+          >
+            <v-list-item-title>Option {{ n }}</v-list-item-title>
+          </v-list-item>
+        </v-list>
+      </v-menu>
+    </v-app-bar>
+  </div>
 </template>
 
-<style scoped>
-.navbar {
-  background-color: rgba(50, 50, 50, 0.5);
-}
-
-.navbar-brand {
-  color: whitesmoke;
-}
-.navbar-brand:hover {
-  color: white;
-}
-</style>
+<script>
+export default {
+    props: {},
+    data() {
+        return {
+            isSearching: false
+        };
+    },
+    mounted() {},
+    methods: {},
+};
+</script>
