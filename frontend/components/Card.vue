@@ -11,6 +11,7 @@
           v-show="!isWriting"
           outlined
           class="mx-auto"
+          :color="colorState()"
         >
           <v-card-text
             @click="writeTodo()"
@@ -23,7 +24,16 @@
               v-show="hover ? true : false" 
               text 
               icon
-              class="mr-0"
+              class="mx-0"
+              @click="updateDone()"
+            >
+              <v-icon>mdi-heart</v-icon>
+            </v-btn>
+            <v-btn
+              v-show="hover ? true : false" 
+              text 
+              icon
+              class="mx-0"
               @click="writeTodo()"
             >
               <v-icon>mdi-pencil</v-icon>
@@ -33,7 +43,7 @@
               text 
               icon 
               color="red"
-              class="ml-0"
+              class="mx-0"
               @click="removeTodo()"
             >
               <v-icon>mdi-delete-outline</v-icon>
@@ -95,41 +105,22 @@ export default {
             this.$store.dispatch('todo/UPDATE_TODO', body);
             this.isWriting = false;
         },
+        updateDone() {
+            this.done = !this.done;
+            this.update();
+        },
         writeTodo() {
             this.isWriting = true;
             this.$nextTick(() => {
                 this.$refs.writeArea.focus();
             });
+        },
+        colorState() {
+            return this.done ? 'yellow lighten-2' : '';
         }
     },
 };
 
-//  <b-input-group>
-//         <b-input-group-prepend is-text>
-//           <b-form-checkbox
-//             v-model="done"
-//             class="mr-n2"
-//             @input="update"
-//           >
-//             <span class="sr-only">Checkbox for following text input</span>
-//           </b-form-checkbox>
-//         </b-input-group-prepend>
-//         <b-form-input
-//           v-model="task"
-//           :class="done?'todo__done':''"
-//           type="text"
-//           @keydown.enter="update"
-//           @blur="update"
-//         />
-//         <b-input-group-append>
-//           <b-button
-//             variant="outline-danger"
-//             @click="removeTodo"
-//           >
-//             X
-//           </b-button>
-//         </b-input-group-append>
-//       </b-input-group>
 </script>
 
 <style scoped>
@@ -149,20 +140,4 @@ export default {
         text-decoration: line-through !important
     }
 
-     /* <v-textarea
-        v-show="isWriting"
-        ref="writeArea"
-        label="Editer la note"
-        :placeholder="todo.task"
-        width="344"
-        clearable
-        clear-icon="mdi-close-circle"
-        outlined
-        rows="4"
-        row-height="30"
-        auto-grow
-        @blur="update()"
-        @keydown.enter="update()"
-      /> */
-    
 </style>
