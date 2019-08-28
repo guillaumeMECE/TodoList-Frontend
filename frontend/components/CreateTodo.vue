@@ -1,25 +1,33 @@
 <template>
-  <div class="w-25 mx-auto">
-    <h2>Create a TODO List</h2>
-    <b-form>
-      <span
-        v-show="typing"
-        class="help-block small text-center"
-      >Hit enter to save</span>
-      <b-form-input
-        id="newTodo"
-        v-model="form.todo"
-        required
-        placeholder="Enter something todo"
-        @input="typing = true"
-        @keydown.enter="addTodo($event)"
-      />
-    </b-form>
+  <div class="w-50 mx-auto">
+    <v-text-field
+      v-show="!isWriting"
+      :placeholder="labelCreateTodo"
+      outlined
+      prepend-inner-icon="mdi-lead-pencil"
+      @focus="writeTodo()"
+      @click="writeTodo()"
+      @click:prepend="writeTodo()"
+      @click:prepend-inner="writeTodo()"
+    />
+    <v-textarea
+      v-show="isWriting"
+      ref="writeArea"
+      v-model="form.todo"
+      :label="labelCreateTodo"
+      clearable
+      clear-icon="mdi-close-circle"
+      outlined
+      rows="4"
+      row-height="30"
+      auto-grow
+      @keydown.enter="addTodo($event)"
+      @blur="isWriting = false"
+    />
   </div>
 </template>
 
 <script>
-import axios from 'axios';
 
 export default {
     data() {
@@ -28,7 +36,9 @@ export default {
                 todo: ''
             },
             todos: '',
-            typing: false
+            typing: false,
+            labelCreateTodo: 'Créer une note...',
+            isWriting: false
         };
     },
     methods: {
@@ -36,6 +46,7 @@ export default {
             if (event) {
                 event.preventDefault();
             }
+            
             this.typing = false;
             const param = {
                 task: this.form.todo 
@@ -44,14 +55,19 @@ export default {
 			
             this.$store.dispatch('todo/ADD_TODO_LIST', param);
             this.clearTodo();
-            // this.refreshTodo();
         },
         clearTodo() {
             this.form.todo = '';
+            this.isWriting = false;
         },
         refreshTodo() {
-            // this.$store.dispatch('todo/FETCH_TODO_LIST');
         },
+        writeTodo() {
+            this.isWriting = true;
+            this.$nextTick(() => {
+                this.$refs.writeArea.focus();
+            });
+        }
     }
 };
 </script>
