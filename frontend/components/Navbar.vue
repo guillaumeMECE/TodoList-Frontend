@@ -11,8 +11,9 @@
       <v-toolbar-title>Todo List</v-toolbar-title>
 
       <div class="flex-grow-1" />
-      <v-text-field
+      <v-text-field 
         v-show="isSearching"
+        ref="writeArea"
         prepend-inner-icon="mdi-magnify"
         label="Search..."
         solo
@@ -24,7 +25,7 @@
       <v-btn
         v-show="!isSearching"
         icon
-        @click="isSearching=!isSearching"
+        @click="writeSearch()"
       >
         <v-icon>mdi-magnify</v-icon>
       </v-btn>
@@ -73,6 +74,13 @@ export default {
         };
     },
     mounted() {},
-    methods: {},
+    methods: {
+        writeSearch() {
+            this.isSearching = true;
+            this.$nextTick(() => {
+                this.$refs.writeArea.focus();
+            });
+        }
+    },
 };
 </script>
