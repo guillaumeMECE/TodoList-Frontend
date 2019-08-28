@@ -6,9 +6,11 @@
       dark
       height="64"
     >
-      <v-app-bar-nav-icon />
+      <v-app-bar-nav-icon></v-app-bar-nav-icon>
 
-      <v-toolbar-title>Todo List</v-toolbar-title>
+      <v-toolbar-title>
+           <v-icon>mdi-heart</v-icon>Todo
+      </v-toolbar-title>
 
       <div class="flex-grow-1" />
       <v-text-field 
