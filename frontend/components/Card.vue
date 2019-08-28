@@ -8,7 +8,7 @@
           <b-form-checkbox
             v-model="done"
             class="mr-n2"
-            @change="update"
+            @input="update"
           >
             <span class="sr-only">Checkbox for following text input</span>
           </b-form-checkbox>
@@ -17,7 +17,8 @@
           v-model="task"
           :class="done?'todo__done':''"
           type="text"
-          @keydown.enter="update()"
+          @keydown.enter="update"
+          @blur="update"
         />
         <b-input-group-append>
           <b-button
@@ -60,9 +61,11 @@ export default {
         update() {
             const body = {
                 task: this.task,
-                done: !this.done,
+                done: this.done,
                 _id: this.todo._id,
             };
+            console.log('body', body);
+            
             this.$store.dispatch('todo/UPDATE_TODO', body);
         }
     },
