@@ -1,10 +1,12 @@
 <template>
-  <b-row>
-    <b-col>
-      <create-todo class="m-5" />
-      <list-todo class="m-5" />
-    </b-col>
-  </b-row>
+  <v-app>
+    <b-row>
+      <b-col>
+        <create-todo class="m-5" />
+        <list-todo class="m-5" />
+      </b-col>
+    </b-row>
+  </v-app>
 </template>
 
 <script>
