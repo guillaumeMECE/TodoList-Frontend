@@ -1,5 +1,5 @@
 <template>
-  <div class="w-25 mx-auto">
+  <div class="mx-auto">
     <h2>TODOS</h2>
     <card
       v-for="todo in todoList"
