@@ -32,6 +32,16 @@ module.exports = {
   */
     plugins: [
     ],
+    
+    /**
+     * Middleware
+     */
+    // router: {
+    //     middleware: ['auth']
+    // },
+    router: {
+        middleware: ['authenticated']
+    },
     /*
   ** Nuxt.js modules
   */
@@ -45,9 +55,36 @@ module.exports = {
         // '@nuxtjs/bootstrap-vue',
         // Doc: https://axios.nuxtjs.org/usage
         '@nuxtjs/axios',
+        // '@nuxtjs/auth',
         '@nuxtjs/eslint-module'
     ],
     
+    // auth: {
+    //     redirect: {
+    //         login: '/login',
+    //         logout: '/',
+    //         callback: '/login',
+    //         home: '/'
+    //     },
+    //     token: {
+    //         enabled: true,
+    //         localStorage: false,
+    //         name: 'token',
+    //         cookieName: 'token',
+    //         type: 'Bearer'
+    //     },
+    //     strategies: {
+    //         local: {
+    //             endpoints: {
+    //                 login: { url: '/api/login', method: 'post', propertyName: 'token' },
+    //                 // logout: { url: '/api/auth/logout', method: 'post' },
+    //                 // user: { url: '/api/auth/user', method: 'get', propertyName: 'user' }
+    //             },
+    //             // tokenRequired: true,
+    //             // tokenType: 'bearer'
+    //         }
+    //     }
+    // },
     /*
   ** Axios module configuration
   ** See https://axios.nuxtjs.org/options

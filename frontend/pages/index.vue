@@ -17,7 +17,8 @@ export default {
     components: {
         CreateTodo,
         ListTodo
-    }
+    },
+    middleware: 'authenticated'
 };
 </script>
 

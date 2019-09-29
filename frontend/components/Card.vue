@@ -1,16 +1,15 @@
 <template>
   <transition name="card">
-    <div
-      v-if="isShow"
-      class="mx-auto w-25"
-    >
+    <v-col>
       <v-hover
         v-slot:default="{ hover }"
       >
         <v-card
           v-show="!isWriting"
+          width="244px"
+          class="my-3 mx-auto"
           outlined
-          class="mx-auto"
+          hover
           :color="colorState()"
         >
           <v-card-text
@@ -27,7 +26,7 @@
               class="mx-0"
               @click="updateDone()"
             >
-              <v-icon>mdi-heart</v-icon>
+              <v-icon>{{ done ? "mdi-heart" : "mdi-heart-outline" }}</v-icon>
             </v-btn>
             <v-btn
               v-show="hover ? true : false" 
@@ -51,19 +50,25 @@
           </v-card-actions>
         </v-card>
       </v-hover>
-      <v-textarea
-        v-show="isWriting"
-        ref="writeArea"
-        v-model="task"
-        append-icon="mdi-pencil"
-        outlined
-        rows="6"
-        row-height="30"
-        auto-grow
-        @blur="update()"
-        @keydown.enter="update()"
-      />
-    </div>
+      <div
+        style="width:244px"
+        class="my-3 mx-auto"
+      >
+        <v-textarea
+          v-show="isWriting"
+          ref="writeArea"
+          v-model="task"
+        
+          append-icon="mdi-pencil"
+          outlined
+          rows="6"
+          row-height="30"
+          auto-grow
+          @blur="update()"
+          @keydown.enter="update()"
+        />
+      </div>
+    </v-col>
   </transition>
 </template>
 

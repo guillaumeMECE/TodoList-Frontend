@@ -6,10 +6,10 @@
       dark
       height="64"
     >
-      <v-app-bar-nav-icon></v-app-bar-nav-icon>
+      <v-app-bar-nav-icon />
 
       <v-toolbar-title>
-           <v-icon>mdi-heart</v-icon>Todo
+        <v-icon>mdi-heart</v-icon>Todo
       </v-toolbar-title>
 
       <div class="flex-grow-1" />
@@ -38,7 +38,12 @@
       >
         <v-icon>mdi-heart</v-icon>
       </v-btn>
-     
+      <v-btn
+        icon
+        @click="login()"
+      >
+        <v-icon>mdi-account-circle</v-icon>
+      </v-btn>
 
       <v-menu
         left
@@ -82,7 +87,10 @@ export default {
             this.$nextTick(() => {
                 this.$refs.writeArea.focus();
             });
-        }
+        },
+        login() {
+            this.$router.push('/login');
+        },
     },
 };
 </script>
